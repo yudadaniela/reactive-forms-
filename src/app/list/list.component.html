@@ -1,0 +1,6 @@
+<ul #listItems>
+    <li ng *ngFor="let item of items">
+        {{item.name}}
+        <button (click)="highLightItem(item.id)">resaltar elemento</button>
+    </li>
+</ul>

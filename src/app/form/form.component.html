@@ -1,0 +1,11 @@
+<form #myForm="ngForm" (submit)="submitForm(myForm)">
+    <div>
+      <label for="name">Nombre:</label>
+      <input type="text" [(ngModel)]="name" id="name" name="name" ngModel required minlength="3">
+    </div>
+    <div>
+      <label for="email">Correo electrónico:</label>
+      <input type="email" [(ngModel)]="email" id="email" name="email" ngModel required email>
+    </div>
+    <button type="button"  #myButton (click)="submitForm(myForm)">Enviar</button>
+  </form>
