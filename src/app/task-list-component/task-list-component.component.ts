@@ -15,23 +15,20 @@ import { TaskListFormComponent } from '../task-list-form/task-list-form.componen
 })
 export class TaskListComponentComponent implements OnInit, AfterViewInit {
   @ViewChild(TaskListFormComponent) form!: TaskListFormComponent;
-  
+  priorityColor:string='white'
   items: string[] = [];
   
   constructor(private serviceTaskList: TaskListService) {}
   ngOnInit(): void {
-    // this.getTaskList();
+   this.getTaskList();
   }
 
   getTaskList() {
     return this.serviceTaskList.getListTask();
   }
 
-  // getColor():string  {
-  //  if(this.form.getPriorityColor()){
-  //   return this.form.getPriorityColor()
-  //  }
-
-  // }
+  getColor(color:string) {
+    this.priorityColor=color
+ }
   ngAfterViewInit() {}
 }

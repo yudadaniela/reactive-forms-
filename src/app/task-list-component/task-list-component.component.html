@@ -1,6 +1,8 @@
-<div>
-  <ul [style.background-color]="">
-    <li *ngFor="let item of getTaskList()">
+ <app-task-list-form (newListTaskEvent)="getColor($event)"
+ ></app-task-list-form> 
+<div >
+  <ul >
+    <li [style.background-color]="priorityColor" *ngFor="let item of getTaskList()">
       <h3>{{ item.title }}</h3>
       <h4>{{ item.task }}</h4>
       <h5>{{ item.priority }}</h5>

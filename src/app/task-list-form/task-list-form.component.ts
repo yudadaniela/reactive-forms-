@@ -1,15 +1,18 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Output, EventEmitter, AfterViewInit, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TaskListService } from '../service/task-list.service';
 import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-task-list-form',
   templateUrl: './task-list-form.component.html',
   styleUrls: ['./task-list-form.component.css'],
 })
-export class TaskListFormComponent {
-  @ViewChild('inputPriority') inputPriority!: ElementRef;
+export class TaskListFormComponent implements  AfterViewInit {
+  //@ViewChild('inputPriority') inputPriority!: ElementRef;
+  @Output() newListTaskEvent=new EventEmitter<string>()
+  
   listTask: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -22,27 +25,38 @@ export class TaskListFormComponent {
       priority: ['', Validators.required],
     });
   }
+  
+  ngAfterViewInit(): void {
+   this.listTask.get('priority')?.valueChanges.subscribe((newChange)=>{
+    console.log(this.getPriorityColor(newChange));
+    this.getPriorityColor(newChange)
+   })
+  
+  }
   onSubmit() {
     // console.log(this.listTask.value);
     const taskList = this.serviceTaskList.addTask(this.listTask.value);
     //console.log(taskList);
   }
-  getPriorityColor(): string {
-    const priorityValue = this.inputPriority.nativeElement.value;
-    console.log(priorityValue);
-
-    switch (priorityValue) {
+  getPriorityColor(priority:string): void {
+    let color:string
+    // const priorityValue = this.inputPriority.nativeElement.value
+    // console.log(priorityValue);
+    //  return 'hola'
+    switch (priority) {
       case 'alta':
-        return 'red';
+        color='red';
         break;
       case 'media':
-        return 'orange';
+        color= 'orange';
         break;
       case 'baja':
-        return 'blue';
+        color=  'blue';
         break;
       default:
-        return 'white';
+        color=  'white';
     }
-  }
+    this.newListTaskEvent.emit(color)
+   }
+   
 }
