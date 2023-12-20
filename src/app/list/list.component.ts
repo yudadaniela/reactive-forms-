@@ -34,7 +34,5 @@ export class ListComponent implements AfterViewInit{
    if(listItem){
     listItem.style.backgroundColor="yellow"
    }
-   
-   
   }
 }

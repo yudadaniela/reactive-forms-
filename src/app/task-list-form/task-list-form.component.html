@@ -1,14 +1,30 @@
-<form  [formGroup]="listTask"  >
-    <label for="title">Title</label>
-    <input type="text" id="title" formControlName="title" >
-    <label for="task">Task</label>
-    <textarea name="" id="task" cols="30" rows="10" formControlName="task"></textarea>
-    <label for="priority"></label>
-    <select name="" id="priority" formControlName="priority">
+<div>
+  <form [formGroup]="listTask" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Title</label>
+      <input type="text" id="title" formControlName="title" />
+    </div>
+    <div>
+      <label for="task">Task</label>
+      <textarea
+        name=""
+        id="task"
+        cols="10"
+        rows="10"
+        formControlName="task"
+      ></textarea>
+    </div>
+    <div>
+      <label for="priority">priority</label>
+      <select #inputPriority name="" id="priority" formControlName="priority">
         <option value="" disabled selected>selecciona</option>
-        <option value="baja">baja</option>
-        <option value="media">media</option>
-        <option value="alta">alta</option>
-    </select>
-    <button type="submit">enviar</button>
-</form>
+        <option value="baja">Baja</option>
+        <option value="media">Media</option>
+        <option value="alta">Alta</option>
+      </select>
+    </div>
+    <div>
+      <button type="submit">enviar</button>
+    </div>
+  </form>
+</div>

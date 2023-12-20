@@ -1,7 +1,9 @@
-<!-- <ul>
-<li *ngFor="let Item of Items">
-  <h3>{{Item.title }}</h3> 
-   <h4>{{Item.task }}</h4>
-   <h5>{{Item.priority }}</h5>
-</li>
-</ul> -->
+<div>
+  <ul [style.background-color]="">
+    <li *ngFor="let item of getTaskList()">
+      <h3>{{ item.title }}</h3>
+      <h4>{{ item.task }}</h4>
+      <h5>{{ item.priority }}</h5>
+    </li>
+  </ul>
+</div>
